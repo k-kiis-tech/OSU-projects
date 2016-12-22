@@ -1,0 +1,11 @@
+#!/bin/bash
+#Karen Thrasher
+#CS 372
+#Project 2
+
+#To run on bash:
+#	chmod u+x compileall
+#	compileall
+#	Note: if ^M present in error when compiling run: dos2unix compileall
+
+gcc -o ftserver ftserver.c 		#Compile ftserver.c
