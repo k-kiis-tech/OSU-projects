@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ ! -e ~/public_html ]
+then
+    echo "Public HTML directory not found. Aborting..."
+    exit
+fi
+
+# PITest report
+if [ -e target/site ]
+then
+    # Remove the existing files
+    if [ -e ~/public_html/project_report ]
+    then
+        rm -rf ~/public_html/project_report
+    fi
+    # Move the site directory to public_html
+    mv target/site target/project_report
+    cp -R target/project_report ~/public_html
+    mv target/project_report target/site
+    # Rename project-reports.html
+    mv ~/public_html/project_report/project-reports.html ~/public_html/project_report/index.html
+    # Give read permissions to everything
+    chmod -R a+r ~/public_html/project_report
+    # Give execute permissions to directories
+    find ~/public_html/project_report -type d -exec chmod a+x {} +
+fi
+
